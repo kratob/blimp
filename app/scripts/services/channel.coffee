@@ -1,6 +1,7 @@
 angular.module 'blimp'
   .factory 'Channel', (LsCache, TwitchApi, Highlight, $q, $timeout) ->
     BATCH_SIZE = 100
+    MAX_OFFSET = 900
     UPDATE_SIZE = 10
     EXPIRY_IN_MINUTES = 2 * 60  # 2 hours
 
@@ -32,7 +33,7 @@ angular.module 'blimp'
               @highlights.push(highlight)
 
           if !done
-            if videos.length >= batchSize
+            if videos.length >= batchSize && offset + batchSize <= MAX_OFFSET
               @_fetchHighlights(BATCH_SIZE, offset + batchSize, tailHighlights)
             else
               $timeout => @_doneFetching()
