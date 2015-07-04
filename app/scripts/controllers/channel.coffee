@@ -27,7 +27,6 @@ angular.module 'brexSearchApp'
 
     @filter = ->
       query = @query.toLowerCase()
-      console.log(query)
       if query == ''
         matchingHighlights = allHighlights
       else
