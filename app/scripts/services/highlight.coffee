@@ -9,14 +9,14 @@ angular.module 'blimp'
       [
         if hours > 0 then "#{hours} h",
         if minutes >= 1 then "#{minutes} min",
-        if minutes < 1 then "#{seconds} sec"
+        if minutes < 1 && hours == 0 then "#{seconds} sec"
       ].join(' ')
 
     class Highlight
       constructor: (data) ->
         _.extend(@, data)
         @_searchText = [@title, @description, @game].join(' ').toLowerCase()
-        @length_in_minutes = formatLength(@length)
+        @human_length = formatLength(@length)
 
       @wrapArray: (array) ->
         _.map array, (data) ->
