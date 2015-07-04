@@ -4,7 +4,7 @@
   %input(type='text' ng-model='channel.query' ng-change='channel.filter()' placeholder='Search')
 
 .highlights(ng-if='channel.highlights' infinite-scroll='channel.addBatch()' infinite-scroll-distance='2' infinite-scroll-container='".content"')
-  .highlight(ng-repeat='highlight in channel.highlights' layout='row' layout-sm='column')
+  .highlight(ng-repeat='highlight in channel.highlights' layout='row' layout-sm='column' ng-click='channel.goTo(highlight)')
     .highlight--teaser(flex-md=35)
       .highlight--image
         %img(ng-src='{{ highlight.preview }}')

@@ -40,4 +40,7 @@ angular.module 'brexSearchApp'
       newSize = @highlights.length + 20
       @highlights = matchingHighlights[0..newSize]
 
+    @goTo = (highlight) ->
+      window.location.href = highlight.url
+
     return
