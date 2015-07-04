@@ -8,4 +8,4 @@ exports.twitchHttpMock = ->
       LsCache.flush()
 
       $httpBackend.whenGET(/^views/).passThrough()
-      $httpBackend.whenJSONP('https://api.twitch.tv/kraken/channels/bananasaurus_rex/videos?callback=JSON_CALLBACK&limit=100&offset=0').respond(highlights)
+      $httpBackend.whenJSONP('https://api.twitch.tv/kraken/channels/bananasaurus_rex/videos?callback=JSON_CALLBACK&client_id=a8qaz7546qrb99s5zld1jarktkz8byx&limit=100&offset=0').respond(highlights)

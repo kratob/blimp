@@ -15,3 +15,4 @@ angular
     $mdThemingProvider.theme 'default'
       .primaryPalette('brown')
       .accentPalette('amber')
+  .constant('CLIENT_ID', 'a8qaz7546qrb99s5zld1jarktkz8byx')

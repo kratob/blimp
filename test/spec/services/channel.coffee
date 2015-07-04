@@ -16,6 +16,7 @@ describe 'Service: Channel', ->
 
     module ($provide) ->
       $provide.value('LsCache', mockLsCache)
+      $provide.constant('CLIENT_ID', 'client_id')
       return
 
     inject (_Channel_, _$httpBackend_, _$timeout_, _Highlight_) ->
@@ -42,11 +43,11 @@ describe 'Service: Channel', ->
       channel = new Channel('channelName')
 
     it 'fetches all highlights in batches of 100 for the given channel', ->
-      $httpBackend.expect('JSONP', 'https://api.twitch.tv/kraken/channels/channelName/videos?callback=JSON_CALLBACK&limit=100&offset=0')
+      $httpBackend.expect('JSONP', 'https://api.twitch.tv/kraken/channels/channelName/videos?callback=JSON_CALLBACK&client_id=client_id&limit=100&offset=0')
         .respond
           videos: videos[..99]
 
-      $httpBackend.expect('JSONP', 'https://api.twitch.tv/kraken/channels/channelName/videos?callback=JSON_CALLBACK&limit=100&offset=100')
+      $httpBackend.expect('JSONP', 'https://api.twitch.tv/kraken/channels/channelName/videos?callback=JSON_CALLBACK&client_id=client_id&limit=100&offset=100')
         .respond
           videos: videos[100..]
 
@@ -57,7 +58,7 @@ describe 'Service: Channel', ->
 
 
     it 'caches results', ->
-      $httpBackend.expect('JSONP', 'https://api.twitch.tv/kraken/channels/channelName/videos?callback=JSON_CALLBACK&limit=100&offset=0')
+      $httpBackend.expect('JSONP', 'https://api.twitch.tv/kraken/channels/channelName/videos?callback=JSON_CALLBACK&client_id=client_id&limit=100&offset=0')
         .respond
           videos: videos[..2]
 
@@ -71,7 +72,7 @@ describe 'Service: Channel', ->
 
 
     it 'merges new videos with cached results', ->
-      $httpBackend.expect('JSONP', 'https://api.twitch.tv/kraken/channels/channelName/videos?callback=JSON_CALLBACK&limit=10&offset=0')
+      $httpBackend.expect('JSONP', 'https://api.twitch.tv/kraken/channels/channelName/videos?callback=JSON_CALLBACK&client_id=client_id&limit=10&offset=0')
         .respond
           videos: videos[..9]
 
@@ -86,7 +87,7 @@ describe 'Service: Channel', ->
 
 
     it 'resolves the promise', ->
-      $httpBackend.expect('JSONP', 'https://api.twitch.tv/kraken/channels/channelName/videos?callback=JSON_CALLBACK&limit=100&offset=0')
+      $httpBackend.expect('JSONP', 'https://api.twitch.tv/kraken/channels/channelName/videos?callback=JSON_CALLBACK&client_id=client_id&limit=100&offset=0')
         .respond
           videos: videos[..5]
 
@@ -99,7 +100,7 @@ describe 'Service: Channel', ->
 
 
     it 'rejects the promise with an error message if the api returns an error', ->
-      $httpBackend.expect('JSONP', 'https://api.twitch.tv/kraken/channels/channelName/videos?callback=JSON_CALLBACK&limit=100&offset=0')
+      $httpBackend.expect('JSONP', 'https://api.twitch.tv/kraken/channels/channelName/videos?callback=JSON_CALLBACK&client_id=client_id&limit=100&offset=0')
         .respond
           error: 422
           message: 'error message'

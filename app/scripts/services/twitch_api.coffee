@@ -1,5 +1,5 @@
 angular.module 'blimp'
-  .factory 'TwitchApi', ($http, $q) ->
+  .factory 'TwitchApi', ($http, $q, CLIENT_ID) ->
 
     BASE_URL = 'https://api.twitch.tv/kraken'
 
@@ -11,6 +11,7 @@ angular.module 'blimp'
             limit: batchSize
             offset: offset
             callback: 'JSON_CALLBACK'
+            client_id: CLIENT_ID
         ).then (response) ->
           if response.data.error?
             $q.reject(response.data.message)
