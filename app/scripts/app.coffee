@@ -12,14 +12,11 @@ angular
   .module 'brexSearchApp', [
     'ngAnimate',
     'ngAria',
-    'ngRoute'
+    'ngRoute',
+    'ngMaterial',
+    'infinite-scroll',
   ]
-  .config ($routeProvider) ->
-    $routeProvider
-      .when '/:channelName',
-        templateUrl: 'views/channel.html'
-        controller: 'ChannelCtrl'
-        controllerAs: 'channel'
-      .otherwise
-        redirectTo: '/bananasaurus_rex'
-
+  .config ($mdThemingProvider) ->
+    $mdThemingProvider.theme 'default'
+      .primaryPalette('brown')
+      .accentPalette('amber')

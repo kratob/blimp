@@ -1,9 +1,38 @@
-%p
-  Channel: {{ channel.channelName }}
+%md-input-container.search(md-no-float)
+  %md-icon
+    search
+  %input(type='text' ng-model='channel.query' ng-change='channel.filter()' placeholder='Search')
 
-%input(type='text' ng-model='query' ng-change='channel.filter(query)')
+.highlights(ng-if='channel.highlights' infinite-scroll='channel.addBatch()' infinite-scroll-distance='2' infinite-scroll-container='".content"')
+  .highlight(ng-repeat='highlight in channel.highlights' layout='row' layout-sm='column')
+    .highlight--teaser(flex-md=35)
+      .highlight--image
+        %img(ng-src='{{ highlight.preview }}')
+    .highlight--details(layout='column' flex)
+      %h3.highlight--title.md-title
+        {{ highlight.title }}
+      .highlight--subtitle.md-caption.muted
+        {{ highlight.recorded_at | date }}
+      %p.highlight--description(flex)
+        {{ highlight.description }}
+      .highlight--info(layout='row')
+        .highlight--info-part.is-fixed
+          %md-icon
+            schedule
+          {{ highlight.length_in_minutes }}
+        .highlight--info-part.is-fixed
+          %md-icon
+            visibility
+          {{ highlight.views }}
+        .highlight--info-part(ng-show='highlight.game')
+          %md-icon
+            tv
+          {{ highlight.game }}
 
-%ul.highlights
-  %li.highlight(ng-repeat='highlight in channel.results')
-    .highlight--description
-      {{ highlight.description }}
+%p.muted(ng-show='channel.highlights.length == 0')
+  No results.
+
+
+%div(layout='row' layout-align='center center')
+  .loading-indicator(ng-show='channel.loading')
+    %md-progress-circular.md-accent(md-mode='indeterminate')

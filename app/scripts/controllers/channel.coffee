@@ -8,21 +8,37 @@
  # Controller of the brexSearchApp
 ###
 angular.module 'brexSearchApp'
-  .controller 'ChannelCtrl', ($routeParams, Channel) ->
+  .controller 'ChannelCtrl', ($routeParams, Channel, Layout) ->
     @channelName = $routeParams.channelName
-    @channel = new Channel(@channelName)
-    @channel.update()
-    @channel.allReady.then =>
-      @highlights = @channel.highlights
-      @results = @highlights
+    @results = undefined
+    @loading = true
+    @query = ''
+    allHighlights = undefined
+    matchingHighlights = undefined
+    channel = new Channel(@channelName)
 
-    @filter = (query) ->
-      query = query.toLowerCase()
+
+    Layout.title = @channelName
+    channel.update().then =>
+      allHighlights = channel.highlights
+      @filter()
+      @loading = false
+
+
+    @filter = ->
+      query = @query.toLowerCase()
+      console.log(query)
       if query == ''
-        @results = @highlights
+        matchingHighlights = allHighlights
       else
-        @results = _.filter @highlights, (highlight) ->
+        matchingHighlights = _.filter allHighlights, (highlight) ->
           highlight.matches(query)
+      @highlights = []
+      @addBatch()
 
+    @addBatch = ->
+      return unless matchingHighlights?
+      newSize = @highlights.length + 20
+      @highlights = matchingHighlights[0..newSize]
 
     return

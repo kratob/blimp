@@ -7,16 +7,14 @@ angular.module 'brexSearchApp'
     class Channel
       constructor: (@channelName) ->
         @highlights = []
-        @_someReadyDeferred = $q.defer()
         @_allReadyDeferred = $q.defer()
-        @someReady = @_someReadyDeferred.promise
         @allReady = @_allReadyDeferred.promise
 
       update: ->
         cachedHighlights = @_fetchHighlightsFromCache()
-        console.log(cachedHighlights)
         batchSize = if cachedHighlights? then UPDATE_SIZE else BATCH_SIZE
         @_fetchHighlights(batchSize, 0, cachedHighlights || [])
+        @allReady
 
 
       _fetchHighlights: (batchSize, offset, tailHighlights) ->
@@ -32,8 +30,6 @@ angular.module 'brexSearchApp'
               false
             else
               @highlights.push(highlight)
-
-          @_someReadyDeferred.resolve()
 
           if !done
             if videos.length == batchSize
@@ -51,7 +47,6 @@ angular.module 'brexSearchApp'
           Highlight.wrapArray(cachedHighlights)
 
       _storeHighlightsToCache: (highlights) ->
-        console.log("store")
         LsCache.set(@_cacheKey(), highlights, EXPIRY_IN_MINUTES)
 
       _cacheKey: ->

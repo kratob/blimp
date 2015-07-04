@@ -24,6 +24,8 @@ module.exports = (config) ->
       'bower_components/lscache/lscache.min.js'
       'bower_components/lscache/lscache.js'
       'bower_components/lodash/lodash.js'
+      'bower_components/angular-material/angular-material.js'
+      'bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js'
       'bower_components/angular-mocks/angular-mocks.js'
       # endbower
       # bower:coffee
