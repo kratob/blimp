@@ -16,7 +16,8 @@ module.exports = function (grunt) {
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
     ngtemplates: 'grunt-angular-templates',
-    cdnify: 'grunt-google-cdn'
+    cdnify: 'grunt-google-cdn',
+    protractor: 'grunt-protractor-runner'
   });
 
   // Configurable paths for the application
@@ -66,6 +67,10 @@ module.exports = function (grunt) {
           '.tmp/scripts/{,*/}*.js',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
+      },
+      protractor: {
+        files: ['test/e2e/{,*/}*.coffee'],
+        tasks: ['connect:test', 'protractor']
       }
     },
 
@@ -79,7 +84,6 @@ module.exports = function (grunt) {
       },
       livereload: {
         options: {
-          open: true,
           middleware: function (connect) {
             return [
               connect.static('.tmp'),
@@ -286,6 +290,21 @@ module.exports = function (grunt) {
           }
         ]
       }
+    },
+
+    protractor: {
+      options: {
+        configFile: "test/protractor.conf.js",
+        keepAlive: true,
+        noColor: false,
+        args: {
+        }
+      },
+      all: {
+        options: {
+          args: {}
+        }
+      },
     },
 
     // Reads HTML for usemin blocks to enable smart builds that automatically
@@ -509,7 +528,8 @@ module.exports = function (grunt) {
     'concurrent:test',
     'autoprefixer',
     'connect:test',
-    'karma'
+    'karma',
+    'protractor'
   ]);
 
   grunt.registerTask('build', [
