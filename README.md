@@ -1,12 +1,13 @@
 # blimp
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.12.0.
+Web app to search twitch.tv channel highlights. All in the client, no backend required.
+
+[Use it here](https://kratob.github.io/blimp)
 
 ## Build & development
 
-Run `grunt` for building and `grunt serve` for preview.
+Run `grunt build` for building and `grunt serve` for preview.
 
 ## Testing
 
-Running `grunt test` will run the unit tests with karma.
+Running `grunt test` will run the unit tests with karma and protractor.
