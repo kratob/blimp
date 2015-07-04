@@ -1,5 +1,5 @@
 angular.module 'blimp'
-  .factory 'TwitchApi', ($http) ->
+  .factory 'TwitchApi', ($http, $q) ->
 
     BASE_URL = 'https://api.twitch.tv/kraken'
 
@@ -12,4 +12,7 @@ angular.module 'blimp'
             offset: offset
             callback: 'JSON_CALLBACK'
         ).then (response) ->
-          response.data
+          if response.data.error?
+            $q.reject(response.data.message)
+          else
+            response.data

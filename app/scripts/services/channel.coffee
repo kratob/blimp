@@ -36,6 +36,10 @@ angular.module 'blimp'
               @_fetchHighlights(BATCH_SIZE, offset + batchSize, tailHighlights)
             else
               $timeout => @_doneFetching()
+        , (errorMessage) =>
+          @highlights = []
+          @error = errorMessage
+          @_allReadyDeferred.reject(@error)
 
       _doneFetching: ->
         @_storeHighlightsToCache(@highlights)

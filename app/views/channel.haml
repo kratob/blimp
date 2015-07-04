@@ -32,6 +32,10 @@
 %p.muted(ng-show='channel.highlights.length == 0')
   No results.
 
+%p(ng-show='channel.error')
+  %md-icon.md-warn
+    error
+  Twitch error: {{ channel.error }}
 
 %div(layout='row' layout-align='center center')
   .loading-indicator(ng-show='channel.loading')

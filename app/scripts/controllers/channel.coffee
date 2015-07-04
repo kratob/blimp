@@ -14,6 +14,9 @@ angular.module 'blimp'
       allHighlights = channel.highlights
       @filter()
       @loading = false
+    , (error) =>
+      @error = error
+      @loading = false
 
 
     @filter = ->
