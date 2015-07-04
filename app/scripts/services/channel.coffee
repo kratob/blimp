@@ -1,7 +1,7 @@
 angular.module 'blimp'
   .factory 'Channel', (LsCache, TwitchApi, Highlight, $q, $timeout) ->
     BATCH_SIZE = 100
-    MAX_OFFSET = 900
+    MAX_OFFSET = 700
     UPDATE_SIZE = 10
     EXPIRY_IN_MINUTES = 2 * 60  # 2 hours
 
