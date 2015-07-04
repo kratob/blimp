@@ -26,4 +26,5 @@ angular.module 'brexSearchApp'
         otherHighlight && @_id == otherHighlight._id
 
       matches: (query) ->
-        _.includes @_searchText, query
+        _.all query.split(' '), (token) =>
+          _.includes @_searchText, token
