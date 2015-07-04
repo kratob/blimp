@@ -12,19 +12,14 @@ angular
   .module 'brexSearchApp', [
     'ngAnimate',
     'ngAria',
-    'ngResource',
     'ngRoute'
   ]
   .config ($routeProvider) ->
     $routeProvider
-      .when '/',
-        templateUrl: 'views/main.html'
-        controller: 'MainCtrl'
-        controllerAs: 'main'
-      .when '/about',
-        templateUrl: 'views/about.html'
-        controller: 'AboutCtrl'
-        controllerAs: 'about'
+      .when '/:channelName',
+        templateUrl: 'views/channel.html'
+        controller: 'ChannelCtrl'
+        controllerAs: 'channel'
       .otherwise
-        redirectTo: '/'
+        redirectTo: '/bananasaurus_rex'
 

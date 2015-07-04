@@ -20,8 +20,10 @@ module.exports = (config) ->
       'bower_components/angular/angular.js'
       'bower_components/angular-animate/angular-animate.js'
       'bower_components/angular-aria/angular-aria.js'
-      'bower_components/angular-resource/angular-resource.js'
       'bower_components/angular-route/angular-route.js'
+      'bower_components/lscache/lscache.min.js'
+      'bower_components/lscache/lscache.js'
+      'bower_components/lodash/lodash.js'
       'bower_components/angular-mocks/angular-mocks.js'
       # endbower
       # bower:coffee

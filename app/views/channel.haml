@@ -1,0 +1,9 @@
+%p
+  Channel: {{ channel.channelName }}
+
+%input(type='text' ng-model='query' ng-change='channel.filter(query)')
+
+%ul.highlights
+  %li.highlight(ng-repeat='highlight in channel.results')
+    .highlight--description
+      {{ highlight.description }}

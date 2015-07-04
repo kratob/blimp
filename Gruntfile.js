@@ -52,12 +52,16 @@ module.exports = function (grunt) {
       gruntfile: {
         files: ['Gruntfile.js']
       },
+      haml: {
+        files: ['<%= yeoman.app %>/views/{,*/}*.haml'],
+        tasks: ['haml:dist']
+      },
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= yeoman.app %>/{,*/}*.html',
+          '<%= yeoman.app %>/{,*/}*.{html,haml}',
           '.tmp/styles/{,*/}*.css',
           '.tmp/scripts/{,*/}*.js',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
@@ -267,6 +271,23 @@ module.exports = function (grunt) {
       }
     },
 
+    haml: {
+      options: {
+        language: 'ruby'
+      },
+      dist: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= yeoman.app %>/views',
+            src: '{,*/}*.haml',
+            dest: '.tmp/views',
+            ext: '.html'
+          }
+        ]
+      }
+    },
+
     // Reads HTML for usemin blocks to enable smart builds that automatically
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
@@ -375,7 +396,7 @@ module.exports = function (grunt) {
           htmlmin: '<%= htmlmin.dist.options %>',
           usemin: 'scripts/scripts.js'
         },
-        cwd: '<%= yeoman.app %>',
+        cwd: '.tmp',
         src: 'views/{,*/}*.html',
         dest: '.tmp/templateCache.js'
       }
@@ -434,15 +455,18 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
+        'haml:dist',
         'coffee:dist',
         'compass:server'
       ],
       test: [
+        'haml',
         'coffee',
         'compass'
       ],
       dist: [
         'coffee',
+        'haml:dist',
         'compass:dist',
         'imagemin',
         'svgmin'
