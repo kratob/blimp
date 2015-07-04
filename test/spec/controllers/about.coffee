@@ -3,7 +3,7 @@
 describe 'Controller: AboutCtrl', ->
 
   # load the controller's module
-  beforeEach module 'brexSearchApp'
+  beforeEach module 'blimp'
 
   AboutCtrl = {}
 

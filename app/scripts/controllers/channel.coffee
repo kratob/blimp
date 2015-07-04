@@ -1,13 +1,4 @@
-'use strict'
-
-###*
- # @ngdoc function
- # @name brexSearchApp.controller:MainCtrl
- # @description
- # # MainCtrl
- # Controller of the brexSearchApp
-###
-angular.module 'brexSearchApp'
+angular.module 'blimp'
   .controller 'ChannelCtrl', ($routeParams, Channel, Layout) ->
     @channelName = $routeParams.channelName
     @results = undefined

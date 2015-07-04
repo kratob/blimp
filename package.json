@@ -1,5 +1,5 @@
 {
-  "name": "brexsearch",
+  "name": "blimp",
   "private": true,
   "devDependencies": {
     "coffee-script": "*",

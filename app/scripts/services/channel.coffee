@@ -1,4 +1,4 @@
-angular.module 'brexSearchApp'
+angular.module 'blimp'
   .factory 'Channel', (LsCache, TwitchApi, Highlight, $q, $timeout) ->
     BATCH_SIZE = 100
     UPDATE_SIZE = 10

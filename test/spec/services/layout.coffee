@@ -3,7 +3,7 @@
 describe 'Service: layout', ->
 
   # load the service's module
-  beforeEach module 'brexSearchApp'
+  beforeEach module 'blimp'
 
   # instantiate service
   layout = {}

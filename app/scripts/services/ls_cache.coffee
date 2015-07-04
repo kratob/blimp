@@ -1,3 +1,3 @@
-angular.module 'brexSearchApp'
+angular.module 'blimp'
   .factory 'LsCache', ->
     window.lscache

@@ -1,4 +1,4 @@
-angular.module 'brexSearchApp'
+angular.module 'blimp'
   .factory 'Layout', ->
     DEFAULT_TITLE = 'Twitch Highlight Search'
     class Layout

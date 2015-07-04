@@ -1,4 +1,4 @@
-angular.module 'brexSearchApp'
+angular.module 'blimp'
   .factory 'TwitchApi', ($http) ->
 
     BASE_URL = 'https://api.twitch.tv/kraken'

@@ -1,5 +1,5 @@
 angular
-  .module 'brexSearchApp'
+  .module 'blimp'
   .config ($routeProvider) ->
     $routeProvider
       .when '/',

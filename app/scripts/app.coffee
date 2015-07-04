@@ -1,15 +1,5 @@
-'use strict'
-
-###*
- # @ngdoc overview
- # @name brexSearchApp
- # @description
- # # brexSearchApp
- #
- # Main module of the application.
-###
 angular
-  .module 'brexSearchApp', [
+  .module 'blimp', [
     'ngAnimate',
     'ngRoute',
     'material.components.button',

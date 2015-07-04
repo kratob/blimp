@@ -1,4 +1,4 @@
-angular.module 'brexSearchApp'
+angular.module 'blimp'
   .controller 'DashboardCtrl', ($location) ->
     @goTo = (channelName) ->
       return if !channelName? || channelName == ''

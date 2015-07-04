@@ -1,4 +1,4 @@
-angular.module 'brexSearchApp'
+angular.module 'blimp'
   .factory 'Highlight', ->
     formatLength = (length) ->
       hours = ~~(length / 3600)
