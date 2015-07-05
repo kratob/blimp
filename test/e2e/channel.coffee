@@ -18,6 +18,9 @@ describe 'channel', ->
     expect(firstHighlight).toContain('4 h 41 min')
     expect(firstHighlight).toContain('193')
 
+    link = element.all(findBy.css('.highlight--link')).first()
+    expect(link.getAttribute('href')).toEqual 'http://www.twitch.tv/bananasaurus_rex/v/6562652'
+
     secondHighlight = element(findBy.repeater('highlight in channel.highlights').row(2)).getText()
 
     expect(secondHighlight).toContain('Rexernlion')
