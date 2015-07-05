@@ -14,7 +14,7 @@ angular.module 'blimp'
 
     class Highlight
       constructor: (data) ->
-        _.extend(@, data)
+        _.extend @, _.pick(data, ['_id', 'title', 'description', 'game', 'date', 'views', 'url', 'preview', 'length'])
         @_searchText = [@title, @description, @game].join(' ').toLowerCase()
         @human_length = formatLength(@length)
 
