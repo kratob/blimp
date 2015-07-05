@@ -1,5 +1,10 @@
 angular.module 'blimp'
-  .factory 'Layout', ->
-    DEFAULT_TITLE = 'Twitch Highlight Search'
-    class Layout
-      @title: DEFAULT_TITLE
+  .factory 'Layout', ($rootScope) ->
+    DEFAULT_TITLE = 'Blimp (Twitch Highlight Search)'
+    Layout =
+      title: DEFAULT_TITLE
+
+    $rootScope.$on '$routeChangeSuccess', ->
+      Layout.title = DEFAULT_TITLE
+
+    Layout

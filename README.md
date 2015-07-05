@@ -22,3 +22,4 @@ Blimp uses
 - [lodash](https://lodash.com/)
 - [lscache](https://github.com/pamelafox/lscache)
 - [ngInfiniteScroll](https://github.com/sroze/ngInfiniteScroll)
+- [Blimp logo](https://thenounproject.com/term/blimp/129868/) by [Creative Stall](https://thenounproject.com/creativestall) licensed under [CC BY 3.0 US](https://thenounproject.com/creativestall)
