@@ -29,7 +29,7 @@
             tv
           {{ highlight.game }}
 
-%p.muted(ng-show='channel.highlights.length == 0')
+%p.muted(ng-show='channel.highlights.length == 0 && !channel.loading')
   No results.
 
 %p(ng-show='channel.error')

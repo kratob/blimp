@@ -9,7 +9,9 @@ angular.module 'blimp'
       constructor: (@channelName) ->
         @highlights = []
         @_allReadyDeferred = $q.defer()
+        @_someReadyDeferred = $q.defer()
         @allReady = @_allReadyDeferred.promise
+        @someReady = @_someReadyDeferred.promise
 
       update: ->
         cachedHighlights = @_fetchHighlightsFromCache()
@@ -32,6 +34,7 @@ angular.module 'blimp'
             else
               @highlights.push(highlight)
 
+          @_someReadyDeferred.resolve()
           if !done
             if videos.length >= batchSize && offset + batchSize <= MAX_OFFSET
               @_fetchHighlights(BATCH_SIZE, offset + batchSize, tailHighlights)
@@ -40,10 +43,12 @@ angular.module 'blimp'
         , (errorMessage) =>
           @highlights = []
           @error = errorMessage
+          @_someReadyDeferred.reject()
           @_allReadyDeferred.reject(@error)
 
       _doneFetching: ->
         @_storeHighlightsToCache(@highlights)
+        @_someReadyDeferred.resolve()
         @_allReadyDeferred.resolve()
 
       _fetchHighlightsFromCache: ->

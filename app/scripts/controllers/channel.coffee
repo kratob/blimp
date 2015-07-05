@@ -18,6 +18,10 @@ angular.module 'blimp'
       @error = error
       @loading = false
 
+    channel.someReady.then =>
+      allHighlights = channel.highlights
+      @filter()
+
 
     @filter = ->
       query = @query.toLowerCase()
