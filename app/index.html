@@ -2,10 +2,17 @@
 <html ng-app="blimp" ng-controller="LayoutCtrl as layout">
   <head>
     <meta charset="utf-8">
-    <title>{{ layout.layout.title }}</title>
+    <title>Blimp (Twitch Highlight Search)</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="favicon.ico" />
+
+    <style>
+      [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        display: none !important;
+      }
+    </style>
+
     <!-- build:css(.) styles/vendor.css -->
     <link rel="stylesheet" href="bower_components/angular-material/modules/js/core/core.css" />
     <link rel="stylesheet" href="bower_components/angular-material/modules/js/button/button.css" />

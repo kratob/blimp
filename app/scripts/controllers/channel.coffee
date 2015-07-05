@@ -9,7 +9,7 @@ angular.module 'blimp'
     channel = new Channel(@channelName)
 
 
-    Layout.title = @channelName
+    Layout.setTitle @channelName
     channel.update().then =>
       allHighlights = channel.highlights
       @filter()
